@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-sm-5">
+      <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+        <div class="input-group">
+          <span class="input-group-text"> <b>Employee Name</b> </span>
+          <input type="text" aria-label="First name" name="firstName" placeholder="First Name" class="form-control" [(ngModel)]="firstName">
+          <input type="text" aria-label="Last name" name="lastName" placeholder="Last Name" class="form-control" [(ngModel)]="lastName">
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>Address</b> </span>
+          <input type="text" aria-label="Address" name="address" placeholder="Address" class="form-control" [(ngModel)]="address">
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>City</b> </span>
+          <input type="text" aria-label="City" name="city" placeholder="City" class="form-control" [(ngModel)]="city">
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>Gender</b> </span>
+          <div class="form-check m-2">
+            <input class="form-check-input" type="radio" name="gender" id="Male" value="Male" [(ngModel)]="gender">
+            <label class="form-check-label" for="Male">
+              Male
+            </label>
+          </div>
+          <div class="form-check m-2">
+            <input class="form-check-input" type="radio" name="gender" id="Female" value="Female" [(ngModel)]="gender">
+            <label class="form-check-label" for="Female">
+              Female
+            </label>
+          </div>
+          <div class="form-check m-2">
+            <input class="form-check-input" type="radio" name="gender" id="Others" value="Others" [(ngModel)]="gender">
+            <label class="form-check-label" for="Others">
+              Others
+            </label>
+          </div>
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>Designation</b> </span>
+          <select class="form-select" aria-label="select example" [(ngModel)]="designation" name="designation">
+            <option value="">-- Select --</option>
+            <option *ngFor="let items of designationOptions" [value]="items"> {{items}} </option>
+          </select>
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>Experience</b> </span>
+          <input type="text" aria-label="Experience" name="experience" placeholder="Experience" class="form-control" [(ngModel)]="experience">
+        </div>
+        <br>
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-12 m-5">
+      <app-employees-list [employees]="employees"></app-employees-list>
+    </div>
+  </div>
+</div>
