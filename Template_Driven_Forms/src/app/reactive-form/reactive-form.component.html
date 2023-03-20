@@ -1,112 +1,130 @@
-
 <div class="container">
-    <div class="row justify-content-center mt-4">
-      <div class="col-sm-5">
-        <div class="d-grid gap-2 mb-3 text-center">
-          <h2>Reactive Form</h2>
+  <div class="row justify-content-center mt-4">
+    <div class="col-sm-5">
+      <div class="d-grid gap-2 mb-3 text-center">
+        <h2>Reactive Form</h2>
+      </div>
+      <form [formGroup]="employeeReactiveForm" (ngSubmit)="onSubmit(employeeReactiveForm)">
+        <div class="input-group">
+          <span class="input-group-text"> <b>Name</b> </span>
+          <input type="text" aria-label="First name" name="firstName" placeholder="First Name" class="form-control"
+            formControlName="firstName">
+          <input type="text" aria-label="Last name" name="lastName" placeholder="Last Name" class="form-control"
+            formControlName="lastName">
         </div>
-        <form>
+        <br>
+        <div formGroupName="address">
           <div class="input-group">
-            <span class="input-group-text"> <b>Employee Name</b> </span>
-            <input type="text" 
-                   aria-label="First name" 
-                   name="firstName" 
-                   placeholder="First Name" 
-                   class="form-control">
-            <input type="text" 
-                   aria-label="Last name" 
-                   name="lastName" 
-                   placeholder="Last Name" 
-                   class="form-control" >
+            <span class="input-group-text"> <b>Address</b> </span>
+            <input type="text" aria-label="Address" name="address" placeholder="Address" class="form-control"
+              formControlName="address">
           </div>
           <br>
           <div class="input-group">
-            <span class="input-group-text"> <b>Address</b> </span>
-            <input type="text" 
-                   aria-label="Address" 
-                   name="address" 
-                   placeholder="Address" 
-                   class="form-control">
+            <span class="input-group-text"> <b>Zip Code</b> </span>
+            <input type="number" aria-label="zipCode" name="zipCode" placeholder="Enter Zip Code" class="form-control"
+              formControlName="zipCode" (input)="onBlur()">
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-text"> <b>City</b> </span>
-            <input type="text" 
-                   aria-label="City" 
-                   name="city" 
-                   placeholder="City" 
-                   class="form-control">       
+            <input type="text" aria-label="City" name="city" placeholder="City" class="form-control"
+              formControlName="city">
           </div>
           <br>
           <div class="input-group">
-            <span class="input-group-text"> <b>Gender</b> </span>
-            <div class="form-control">
-              <div class="form-check m-2">
-                <input class="form-check-input" 
-                       type="radio" 
-                       name="gender" 
-                       id="Male" 
-                       value="Male">
-                <label class="form-check-label" for="Male">
-                  Male
-                </label>
-              </div>
-              <div class="form-check m-2">
-                <input class="form-check-input" 
-                       type="radio" 
-                       name="gender" 
-                       id="Female" 
-                       value="Female">
-                <label class="form-check-label" for="Female">
-                  Female
-                </label>
-              </div>
-              <div class="form-check m-2">
-                <input class="form-check-input" 
-                       type="radio" 
-                       name="gender" 
-                       id="Others" 
-                       value="Others" >
-                <label class="form-check-label" for="Others">
-                  Others
-                </label>
-              </div>
+            <span class="input-group-text"> <b>State</b> </span>
+            <input type="text" aria-label="State" name="state" placeholder="State" class="form-control"
+              formControlName="state">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-text"> <b>Country</b> </span>
+            <input type="text" aria-label="Country" name="country" placeholder="Country" class="form-control"
+              formControlName="country">
+          </div>
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>Gender</b> </span>
+          <div class="form-control">
+            <div class="form-check m-2">
+              <input class="form-check-input" type="radio" name="gender" id="Male" value="Male"
+                formControlName="gender">
+              <label class="form-check-label" for="Male">
+                Male
+              </label>
+            </div>
+            <div class="form-check m-2">
+              <input class="form-check-input" type="radio" name="gender" id="Female" value="Female"
+                formControlName="gender">
+              <label class="form-check-label" for="Female">
+                Female
+              </label>
+            </div>
+            <div class="form-check m-2">
+              <input class="form-check-input" type="radio" name="gender" id="Others" value="Others"
+                formControlName="gender">
+              <label class="form-check-label" for="Others">
+                Others
+              </label>
             </div>
           </div>
-          <br>
-          <div class="input-group">
-            <span class="input-group-text"> <b>Designation</b> </span>
-            <select class="form-select" 
-                    aria-label="select example"
-                    name="designation">
-              <option value="">-- Select --</option>
-              <!-- <option *ngFor="let items of designationOptions" [value]="items"> {{items}} </option> -->
-            </select>
-          </div>
-          <br>
-          <div class="input-group">
-            <span class="input-group-text"> <b>Experience</b> </span>
-            <input type="number" 
-                   aria-label="Experience" 
-                   name="experience" 
-                   placeholder="Experience" 
-                   class="form-control">
-            <select class="form-select" 
-                   aria-label="select example" >
-             <option value="">-- Select Period --</option>
-             <!-- <option *ngFor="let items of periodOptions" [value]="items"> {{items}} </option> -->
-           </select>
-          </div>
-          <br>
-          <div class="d-grid gap-2">
-            <button class="btn btn-success" type="submit">Submit</button>
-            <button class="btn btn-danger" type="reset">Reset</button>
-            <button class="btn btn-warning mt-3" type="button" routerLink="/Template-driven-form">Navigate to Template Driven Form ➞</button>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-12 m-5">
-      </div>
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>DOB</b> </span>
+          <input type="date" aria-label="DOB" name="dob" class="form-control" formControlName="dob">
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>Age</b> </span>
+          <input type="number" aria-label="Age" name="age" placeholder="Age" class="form-control" formControlName="age">
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>Email</b> </span>
+          <input type="email" aria-label="Email" name="email" placeholder="Email" class="form-control"
+            formControlName="email">
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>Mobile Number</b> </span>
+          <input type="number" aria-label="mNumber" name="mNumber" placeholder="Enter Mobile Number"
+            class="form-control" formControlName="mNumber">
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>Job Status</b> </span>
+          <select class="form-select" aria-label="select example" name="jStatus" formControlName="jStatus">
+            <option value="">-- Select --</option>
+            <option *ngFor="let items of jobStatusOptions" [value]="items"> {{items}} </option>
+          </select>
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-text"> <b>Work Experience</b> </span>
+          <input type="number" aria-label="Experience" name="experience" placeholder="Experience" class="form-control"
+            formControlName="experience">
+          <select class=" form-select form-control"
+                  aria-label="select example"
+                  formControlName="period"
+                  name="period"
+                  >
+            <option value="">-- Select Period --</option>
+            <option *ngFor=" let items of periodOptions" [value]="items"> {{items}} </option>
+          </select>
+        </div>
+        <br>
+        <div class="d-grid gap-2">
+          <button class="btn btn-success" type="submit">Submit</button>
+          <button class="btn btn-danger" type="reset">Reset</button>
+          <button class="btn btn-warning mt-3" type="button" routerLink="/Template-driven-form">Navigate to Template
+            Driven Form ➞</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-12 m-5">
     </div>
   </div>
-  
+</div>
