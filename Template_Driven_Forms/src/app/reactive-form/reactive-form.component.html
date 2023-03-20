@@ -1,0 +1,112 @@
+
+<div class="container">
+    <div class="row justify-content-center mt-4">
+      <div class="col-sm-5">
+        <div class="d-grid gap-2 mb-3 text-center">
+          <h2>Reactive Form</h2>
+        </div>
+        <form>
+          <div class="input-group">
+            <span class="input-group-text"> <b>Employee Name</b> </span>
+            <input type="text" 
+                   aria-label="First name" 
+                   name="firstName" 
+                   placeholder="First Name" 
+                   class="form-control">
+            <input type="text" 
+                   aria-label="Last name" 
+                   name="lastName" 
+                   placeholder="Last Name" 
+                   class="form-control" >
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-text"> <b>Address</b> </span>
+            <input type="text" 
+                   aria-label="Address" 
+                   name="address" 
+                   placeholder="Address" 
+                   class="form-control">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-text"> <b>City</b> </span>
+            <input type="text" 
+                   aria-label="City" 
+                   name="city" 
+                   placeholder="City" 
+                   class="form-control">       
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-text"> <b>Gender</b> </span>
+            <div class="form-control">
+              <div class="form-check m-2">
+                <input class="form-check-input" 
+                       type="radio" 
+                       name="gender" 
+                       id="Male" 
+                       value="Male">
+                <label class="form-check-label" for="Male">
+                  Male
+                </label>
+              </div>
+              <div class="form-check m-2">
+                <input class="form-check-input" 
+                       type="radio" 
+                       name="gender" 
+                       id="Female" 
+                       value="Female">
+                <label class="form-check-label" for="Female">
+                  Female
+                </label>
+              </div>
+              <div class="form-check m-2">
+                <input class="form-check-input" 
+                       type="radio" 
+                       name="gender" 
+                       id="Others" 
+                       value="Others" >
+                <label class="form-check-label" for="Others">
+                  Others
+                </label>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-text"> <b>Designation</b> </span>
+            <select class="form-select" 
+                    aria-label="select example"
+                    name="designation">
+              <option value="">-- Select --</option>
+              <!-- <option *ngFor="let items of designationOptions" [value]="items"> {{items}} </option> -->
+            </select>
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-text"> <b>Experience</b> </span>
+            <input type="number" 
+                   aria-label="Experience" 
+                   name="experience" 
+                   placeholder="Experience" 
+                   class="form-control">
+            <select class="form-select" 
+                   aria-label="select example" >
+             <option value="">-- Select Period --</option>
+             <!-- <option *ngFor="let items of periodOptions" [value]="items"> {{items}} </option> -->
+           </select>
+          </div>
+          <br>
+          <div class="d-grid gap-2">
+            <button class="btn btn-success" type="submit">Submit</button>
+            <button class="btn btn-danger" type="reset">Reset</button>
+            <button class="btn btn-warning mt-3" type="button" routerLink="/Template-driven-form">Navigate to Template Driven Form ➞</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-12 m-5">
+      </div>
+    </div>
+  </div>
+  

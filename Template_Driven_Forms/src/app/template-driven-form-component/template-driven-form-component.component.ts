@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-template-driven-form-component',
@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateDrivenFormComponentComponent implements OnInit {
 
+  @ViewChild('employeeForm') employeeFormValue: any;
+
+  public submitted = false;
+  
   public firstName: string = '';
   public lastName: string = '';
   public address: string = '';
@@ -14,6 +18,7 @@ export class TemplateDrivenFormComponentComponent implements OnInit {
   public gender: string = '';
   public designation: string = '';
   public experience: string = '';
+  public period: string = '';
 
   public employees: any[] = [];
 
@@ -23,23 +28,36 @@ export class TemplateDrivenFormComponentComponent implements OnInit {
     'Senior Software Engineer'
   ]
 
+  public periodOptions: any[] = [
+    'Years',
+    'Months'
+  ]
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(employeeForm: any) {
-    this.employees.push(employeeForm.form.value);
-    this.clearFields();
+    if(employeeForm?.dirty && employeeForm?.valid) {
+      this.submitted = true;
+      this.employees.push(employeeForm.form.value);
+      this.clearFields(employeeForm);
+    }
   }
 
-  clearFields() {
-    this.firstName = '';
-    this.lastName = '';
-    this.address = '';
-    this.city = '';
-    this.gender = '';
-    this.designation = '';
-    this.experience = '';
+  clearFields(employeeForm: any) {
+    employeeForm.reset();
+    // this. firstName = '';
+    // this.lastName = '';
+    // this.address = '';
+    // this.city = '';
+    // this.gender= '';
+    // this.designation= '';
+    // this.experience = '';
+    // this.period = '';
+  }
+
+  get f() {
+    return this.employeeFormValue.controls;
   }
 }

@@ -1,60 +1,173 @@
 <div class="container">
-  <div class="row justify-content-center mt-5">
+  <div class="row justify-content-center mt-4">
     <div class="col-sm-5">
+      <div class="d-grid gap-2 mb-3 text-center">
+        <h2>Template Driven Form</h2>
+      </div>
       <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
         <div class="input-group">
           <span class="input-group-text"> <b>Employee Name</b> </span>
-          <input type="text" aria-label="First name" name="firstName" placeholder="First Name" class="form-control" [(ngModel)]="firstName">
-          <input type="text" aria-label="Last name" name="lastName" placeholder="Last Name" class="form-control" [(ngModel)]="lastName">
+          <input type="text" 
+                 aria-label="First name" 
+                 name="firstName" 
+                 placeholder="First Name" 
+                 class="form-control" 
+                 [(ngModel)]="firstName"
+                 required
+                 [ngClass]="{ 'is-invalid': employeeForm.submitted && f.firstName?.errors }">
+          <input type="text" 
+                 aria-label="Last name" 
+                 name="lastName" 
+                 placeholder="Last Name" 
+                 class="form-control" 
+                 required
+                 [(ngModel)]="lastName"
+                 [ngClass]="{ 'is-invalid': employeeForm.submitted && f.lastName?.errors }">
+          <div *ngIf="employeeForm.submitted && (f.firstName?.errors || f.lastName?.errors)" class="invalid-feedback">
+            <div *ngIf="f.firstName?.errors  && !f.lastName?.errors"> 
+              <div *ngIf="f.firstName?.errors['required']">Employee First Name is required</div>
+            </div>
+            <div *ngIf="!f.firstName?.errors && f.lastName?.errors"> 
+              <div *ngIf="f.lastName?.errors['required']">Employee Last Name is required</div>
+            </div>
+            <div *ngIf="f.firstName?.errors && f.lastName?.errors"> 
+              <div *ngIf="f.firstName?.errors['required']">Employee Name is required</div>
+            </div>
+          </div>
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>Address</b> </span>
-          <input type="text" aria-label="Address" name="address" placeholder="Address" class="form-control" [(ngModel)]="address">
+          <input type="text" 
+                 aria-label="Address" 
+                 name="address" 
+                 placeholder="Address" 
+                 class="form-control" 
+                 required
+                 [(ngModel)]="address"
+                 [ngClass]="{ 'is-invalid': employeeForm.submitted && f.address?.errors }">
+          <div *ngIf="employeeForm.submitted && f.address?.errors" class="invalid-feedback">
+            <div *ngIf="f.address?.errors['required']">Address is required</div>
+          </div>
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>City</b> </span>
-          <input type="text" aria-label="City" name="city" placeholder="City" class="form-control" [(ngModel)]="city">
+          <input type="text" 
+                 aria-label="City" 
+                 name="city" 
+                 placeholder="City" 
+                 class="form-control"
+                 required 
+                 [(ngModel)]="city"
+                 [ngClass]="{ 'is-invalid': employeeForm.submitted && f.city?.errors }">
+          <div *ngIf="employeeForm.submitted && f.city?.errors" class="invalid-feedback">
+            <div *ngIf="f.city?.errors['required']">City is required</div>
+          </div>       
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>Gender</b> </span>
-          <div class="form-check m-2">
-            <input class="form-check-input" type="radio" name="gender" id="Male" value="Male" [(ngModel)]="gender">
-            <label class="form-check-label" for="Male">
-              Male
-            </label>
+          <div class="form-control" [ngClass]="{ 'is-invalid': employeeForm.submitted && f.gender?.errors }">
+            <div class="form-check m-2">
+              <input class="form-check-input" 
+                     type="radio" 
+                     name="gender" 
+                     id="Male" 
+                     value="Male" 
+                     [(ngModel)]="gender"
+                     required
+                     [ngClass]="{ 'is-invalid': employeeForm.submitted && f.gender?.errors }">
+              <label class="form-check-label" for="Male">
+                Male
+              </label>
+            </div>
+            <div class="form-check m-2">
+              <input class="form-check-input" 
+                     type="radio" 
+                     name="gender" 
+                     id="Female" 
+                     value="Female" 
+                     [(ngModel)]="gender"
+                     required
+                     [ngClass]="{ 'is-invalid': employeeForm.submitted && f.gender?.errors }"
+                     >
+              <label class="form-check-label" for="Female">
+                Female
+              </label>
+            </div>
+            <div class="form-check m-2">
+              <input class="form-check-input" 
+                     type="radio" 
+                     name="gender" 
+                     id="Others" 
+                     value="Others" 
+                     [(ngModel)]="gender"
+                     required
+                     [ngClass]="{ 'is-invalid': employeeForm.submitted && f.gender?.errors }">
+              <label class="form-check-label" for="Others">
+                Others
+              </label>
+            </div>
           </div>
-          <div class="form-check m-2">
-            <input class="form-check-input" type="radio" name="gender" id="Female" value="Female" [(ngModel)]="gender">
-            <label class="form-check-label" for="Female">
-              Female
-            </label>
-          </div>
-          <div class="form-check m-2">
-            <input class="form-check-input" type="radio" name="gender" id="Others" value="Others" [(ngModel)]="gender">
-            <label class="form-check-label" for="Others">
-              Others
-            </label>
+          <div *ngIf="employeeForm.submitted && f.gender?.errors" class="invalid-feedback">
+            <div *ngIf="f.gender?.errors['required']">Gender is required</div>
           </div>
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>Designation</b> </span>
-          <select class="form-select" aria-label="select example" [(ngModel)]="designation" name="designation">
+          <select class="form-select" 
+                  aria-label="select example" 
+                  [(ngModel)]="designation" 
+                  name="designation"
+                  required
+                  [ngClass]="{ 'is-invalid': employeeForm.submitted && f.designation?.errors }">
             <option value="">-- Select --</option>
             <option *ngFor="let items of designationOptions" [value]="items"> {{items}} </option>
           </select>
+          <div *ngIf="employeeForm.submitted && f.designation?.errors" class="invalid-feedback">
+            <div *ngIf="f.designation?.errors['required']">Designation is required</div>
+          </div>
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>Experience</b> </span>
-          <input type="text" aria-label="Experience" name="experience" placeholder="Experience" class="form-control" [(ngModel)]="experience">
+          <input type="number" 
+                 aria-label="Experience" 
+                 name="experience" 
+                 placeholder="Experience" 
+                 class="form-control" 
+                 [(ngModel)]="experience"
+                 required
+                 [ngClass]="{ 'is-invalid': employeeForm.submitted && f.experience?.errors }">
+          <select class="form-select" 
+                 aria-label="select example" 
+                 [(ngModel)]="period" 
+                 name="period"
+                 required
+                 [ngClass]="{ 'is-invalid': employeeForm.submitted && f.period?.errors }">
+           <option value="">-- Select Period --</option>
+           <option *ngFor="let items of periodOptions" [value]="items"> {{items}} </option>
+         </select>
+          <div *ngIf="employeeForm.submitted" class="invalid-feedback">
+            <div *ngIf="f.experience?.errors && f.period?.errors">
+              <div *ngIf="f.experience?.errors['required']">Experience is required</div>
+              <div *ngIf="f.period?.errors['required']">Period is required</div>
+            </div>
+            <div *ngIf="f.experience?.errors && !f.period?.errors">
+              <div *ngIf="f.experience?.errors['required']">Experience is required</div>
+            </div>
+            <div *ngIf="!f.experience?.errors && f.period?.errors">
+              <div *ngIf="f.period?.errors['required']">Period is required</div>
+            </div>
+          </div>
         </div>
         <br>
         <div class="d-grid gap-2">
-          <button class="btn btn-primary" type="submit">Submit</button>
+          <button class="btn btn-success" type="submit">Submit</button>
+          <button class="btn btn-danger" type="reset">Reset</button>
+          <button class="btn btn-warning mt-3" type="button" routerLink="/Reactive-Form">Navigate to Reactive Form ➞</button>
         </div>
       </form>
     </div>
