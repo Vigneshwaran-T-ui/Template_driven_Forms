@@ -96,7 +96,8 @@
         <div class="input-group">
           <span class="input-group-text"> <b>Age</b> </span>
           <input type="number" aria-label="Age" name="age" placeholder="Age" class="form-control" formControlName="age"
-            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('age')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('age')?.errors && employeeReactiveForm.get('submitted')?.value === true}"
+            onKeyPress="if(this.value.length==2) return false;">
         </div>
         <br>
         <div class="input-group">

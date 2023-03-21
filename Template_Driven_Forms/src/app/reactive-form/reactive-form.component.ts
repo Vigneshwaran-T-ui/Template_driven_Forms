@@ -21,6 +21,7 @@ export class ReactiveFormComponent implements OnInit {
   ];
 
   public errorMessage: any[] = [];
+  public reactiveFormList: any[] = [];
 
   constructor() { }
 
@@ -104,11 +105,13 @@ export class ReactiveFormComponent implements OnInit {
         this.errorMessage.push('*'+'If you in Work, Work Experience is Required.');
       }
     }
-    console.log(this.employeeReactiveForm);
+    if(this.employeeReactiveForm?.valid && this.employeeReactiveForm?.dirty) {
+      this.reactiveFormList.push(this.employeeReactiveForm.value);
+      this.onReset();
+    }
   }
 
   onBlur() {
-    console.log(this.employeeReactiveForm.get("address")?.get("zipCode"))
     if (this.employeeReactiveForm.get("address")?.get("zipCode")?.value === 626001) {
       this.employeeReactiveForm.patchValue({
         address: {
@@ -163,7 +166,7 @@ export class ReactiveFormComponent implements OnInit {
       jStatus: '',
       experience:'',
       period: '',
-      submitted: ''
+      submitted: 'false'
     })
     this.errorMessage = [];
   }
