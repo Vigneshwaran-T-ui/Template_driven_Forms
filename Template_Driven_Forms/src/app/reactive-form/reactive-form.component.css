@@ -1,0 +1,23 @@
+.scroller {
+  width: 32rem;
+  height: 37rem;
+  overflow-y: auto;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: none;
+}
+
+
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scroller {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}

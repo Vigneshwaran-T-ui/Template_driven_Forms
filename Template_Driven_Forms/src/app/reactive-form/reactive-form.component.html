@@ -4,50 +4,65 @@
       <div class="d-grid gap-2 mb-3 text-center">
         <h2>Reactive Form</h2>
       </div>
-      <form [formGroup]="employeeReactiveForm" (ngSubmit)="onSubmit(employeeReactiveForm)">
+      <form [formGroup]="employeeReactiveForm" (ngSubmit)="onSubmit()" class="scroller">
         <div class="input-group">
           <span class="input-group-text"> <b>Name</b> </span>
           <input type="text" aria-label="First name" name="firstName" placeholder="First Name" class="form-control"
-            formControlName="firstName">
+            formControlName="firstName"
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('firstName')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
           <input type="text" aria-label="Last name" name="lastName" placeholder="Last Name" class="form-control"
-            formControlName="lastName">
+            formControlName="lastName"
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('lastName')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
+          <!-- <div
+            *ngIf="employeeReactiveForm.get('firstName')?.errors && (employeeReactiveForm.get('firstName')?.dirty
+            ||employeeReactiveForm.get('firstName')?.touched) && employeeReactiveForm.submitted"
+            class="invalid-feedback">
+              First Name is not valid
+          </div> -->
         </div>
         <br>
         <div formGroupName="address">
           <div class="input-group">
             <span class="input-group-text"> <b>Address</b> </span>
             <input type="text" aria-label="Address" name="address" placeholder="Address" class="form-control"
-              formControlName="address">
+              formControlName="address"
+              [ngClass]="{ 'is-invalid': employeeReactiveForm.get('address')?.get('address')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-text"> <b>Zip Code</b> </span>
             <input type="number" aria-label="zipCode" name="zipCode" placeholder="Enter Zip Code" class="form-control"
-              formControlName="zipCode" (input)="onBlur()">
+              formControlName="zipCode" (input)="onBlur()"
+              onKeyPress="if(this.value.length==6) return false;"
+              [ngClass]="{ 'is-invalid': employeeReactiveForm.get('address')?.get('zipCode')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-text"> <b>City</b> </span>
             <input type="text" aria-label="City" name="city" placeholder="City" class="form-control"
-              formControlName="city">
+              formControlName="city"
+              [ngClass]="{ 'is-invalid': employeeReactiveForm.get('address')?.get('city')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-text"> <b>State</b> </span>
             <input type="text" aria-label="State" name="state" placeholder="State" class="form-control"
-              formControlName="state">
+              formControlName="state"
+              [ngClass]="{ 'is-invalid': employeeReactiveForm.get('address')?.get('state')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-text"> <b>Country</b> </span>
             <input type="text" aria-label="Country" name="country" placeholder="Country" class="form-control"
-              formControlName="country">
+              formControlName="country"
+              [ngClass]="{ 'is-invalid': employeeReactiveForm.get('address')?.get('country')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
           </div>
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>Gender</b> </span>
-          <div class="form-control">
+          <div class="form-control"
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('gender')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
             <div class="form-check m-2">
               <input class="form-check-input" type="radio" name="gender" id="Male" value="Male"
                 formControlName="gender">
@@ -74,29 +89,35 @@
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>DOB</b> </span>
-          <input type="date" aria-label="DOB" name="dob" class="form-control" formControlName="dob">
+          <input type="date" aria-label="DOB" name="dob" class="form-control" formControlName="dob"
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('dob')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>Age</b> </span>
-          <input type="number" aria-label="Age" name="age" placeholder="Age" class="form-control" formControlName="age">
+          <input type="number" aria-label="Age" name="age" placeholder="Age" class="form-control" formControlName="age"
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('age')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>Email</b> </span>
           <input type="email" aria-label="Email" name="email" placeholder="Email" class="form-control"
-            formControlName="email">
+            formControlName="email"
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('email')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>Mobile Number</b> </span>
           <input type="number" aria-label="mNumber" name="mNumber" placeholder="Enter Mobile Number"
-            class="form-control" formControlName="mNumber">
+            class="form-control" formControlName="mNumber"
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('mNumber')?.errors && employeeReactiveForm.get('submitted')?.value === true}"
+            onKeyPress="if(this.value.length==10) return false;">
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-text"> <b>Job Status</b> </span>
-          <select class="form-select" aria-label="select example" name="jStatus" formControlName="jStatus">
+          <select class="form-select" aria-label="select example" name="jStatus" formControlName="jStatus"
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('jStatus')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
             <option value="">-- Select --</option>
             <option *ngFor="let items of jobStatusOptions" [value]="items"> {{items}} </option>
           </select>
@@ -105,26 +126,35 @@
         <div class="input-group">
           <span class="input-group-text"> <b>Work Experience</b> </span>
           <input type="number" aria-label="Experience" name="experience" placeholder="Experience" class="form-control"
-            formControlName="experience">
-          <select class=" form-select form-control"
-                  aria-label="select example"
-                  formControlName="period"
-                  name="period"
-                  >
+            formControlName="experience"
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('experience')?.errors && employeeReactiveForm.get('submitted')?.value === true && !employeeReactiveForm.get('experience')?.disabled}">
+          <select class=" form-select form-control" aria-label="select example" formControlName="period" name="period"
+            [ngClass]="{ 'is-invalid': employeeReactiveForm.get('period')?.errors && employeeReactiveForm.get('submitted')?.value === true && !employeeReactiveForm.get('period')?.disabled}">
             <option value="">-- Select Period --</option>
             <option *ngFor=" let items of periodOptions" [value]="items"> {{items}} </option>
           </select>
         </div>
         <br>
-        <div class="d-grid gap-2">
+        <div class="d-grid gap-2 mb-5">
           <button class="btn btn-success" type="submit">Submit</button>
-          <button class="btn btn-danger" type="reset">Reset</button>
-          <button class="btn btn-warning mt-3" type="button" routerLink="/Template-driven-form">Navigate to Template
-            Driven Form ➞</button>
+          <button class="btn btn-danger" type="button" (click)="onReset()">Reset</button>
         </div>
       </form>
     </div>
-    <div class="col-md-12 m-5">
+    <div class="col-sm-5 mt-3">
+      <div class="card mt-5">
+        <h5 class="card-header text-center">Validations</h5>
+        <div class="card-body " style="height: 30rem;">
+          <div *ngFor="let item of errorMessage">
+            <div *ngIf="errorMessage.length > 0">
+              <h5 class="card-text text-danger mb-2">{{item}}</h5>
+            </div>
+          </div>
+          <div *ngIf="errorMessage.length === 0" class="text-center">
+            <h5 class="card-text text-success mb-2"> Your Form is Valid</h5>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

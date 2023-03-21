@@ -1,1 +1,12 @@
-<router-outlet></router-outlet>
+<nav class="navbar fixed-top navbar-light bg-primary">
+  <button class="btn btn-outline-light m-3" type="button" routerLink="/Template-driven-form" [disabled]="tempDriForBtn">❮ Template
+    Driven Form </button>
+  <button class="btn btn-outline-light m-3" type="button" routerLink="/Reactive-Form" [disabled]="reaForBtn">Reactive
+    Form</button>
+  <button class="btn btn-outline-light m-3" type="button" routerLink="/Template-driven-form"> Form Array ❯</button>
+</nav>
+<div class="row" style="margin-top: 5rem;">
+  <div class="col-md-24 p-0">
+    <router-outlet></router-outlet>
+  </div>
+</div>
