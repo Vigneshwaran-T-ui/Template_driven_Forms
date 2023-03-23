@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveModalComponent } from '../reactive-modal/reactive-modal.component';
 
 @Component({
   selector: 'app-reactive-form',
@@ -9,6 +11,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ReactiveFormComponent implements OnInit {
 
   public employeeReactiveForm!: FormGroup;
+
+  public modalRef!: NgbModalRef
 
   public jobStatusOptions: any[] = [
     'Student',
@@ -23,7 +27,9 @@ export class ReactiveFormComponent implements OnInit {
   public errorMessage: any[] = [];
   public reactiveFormList: any[] = [];
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit(): void {
     this.formBuilder();
@@ -107,6 +113,7 @@ export class ReactiveFormComponent implements OnInit {
     }
     if(this.employeeReactiveForm?.valid && this.employeeReactiveForm?.dirty) {
       this.reactiveFormList.push(this.employeeReactiveForm.value);
+      this.openModal();
       this.onReset();
     }
   }
@@ -169,5 +176,13 @@ export class ReactiveFormComponent implements OnInit {
       submitted: false
     })
     this.errorMessage = [];
+  }
+
+  openModal(){
+    this.modalRef = this.modalService.open(ReactiveModalComponent, {
+      fullscreen: true,
+      backdrop: 'static'
+    });
+    this.modalRef.componentInstance.employeeReactiveForm = this.reactiveFormList;
   }
 }

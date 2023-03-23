@@ -7,19 +7,23 @@ import { TemplateDrivenFormComponentComponent } from './template-driven-form-com
 import { EmployeesListComponent } from './employees-list/employees-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveModalComponent } from './reactive-modal/reactive-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateDrivenFormComponentComponent,
     EmployeesListComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    ReactiveModalComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
