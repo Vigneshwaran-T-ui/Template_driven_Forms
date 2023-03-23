@@ -50,7 +50,7 @@ export class ReactiveFormComponent implements OnInit {
       jStatus: new FormControl('',[Validators.required]),
       experience: new FormControl('', [Validators.required]),
       period: new FormControl('',[Validators.required]),
-      submitted: new FormControl('false')
+      submitted: new FormControl(false)
     })
   }
 
@@ -163,7 +163,7 @@ export class ReactiveFormComponent implements OnInit {
       jStatus: '',
       experience:'',
       period: '',
-      submitted: ''
+      submitted: false
     })
     this.errorMessage = [];
   }

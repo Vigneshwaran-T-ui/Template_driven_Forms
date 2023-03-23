@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
-        if(event.url === '/Template-driven-form'){
+        if(event.url === '/' || event.urlAfterRedirects === '/Template-driven-form'){
           this.tempDriForBtn = true;
           this.reaForBtn = false;
           this.forArrBtn = false;
