@@ -22,15 +22,23 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
-        if(event.url === '/' || event.urlAfterRedirects === '/Template-driven-form'){
+        if (
+          event.url === '/' ||
+          event.urlAfterRedirects === '/Template-driven-form'
+        ) {
           this.tempDriForBtn = true;
           this.reaForBtn = false;
           this.forArrBtn = false;
         }
-        if(event.url === '/Reactive-Form'){
+        if(event.urlAfterRedirects === '/Reactive-Form') {
           this.tempDriForBtn = false;
           this.reaForBtn = true;
           this.forArrBtn = false;
+        }
+        if(event.urlAfterRedirects === '/Form-Array') {
+          this.tempDriForBtn = false;
+          this.reaForBtn = false;
+          this.forArrBtn = true;
         }
       });
   }

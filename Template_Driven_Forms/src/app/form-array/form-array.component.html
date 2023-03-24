@@ -1,0 +1,94 @@
+<div class="container">
+  <main class="main">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <h4 class="mb-3">Create Student Information</h4>
+        <form [formGroup]="studentInfo" class="needs-validation" novalidate>
+          <div class="row g-3 mb-4">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label"> <strong> First name </strong> </label>
+              <input type="text" class="form-control" formControlName="firstName" id="firstName"
+                placeholder="First name" required>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label"> <strong> Last name </strong></label>
+              <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Last name"
+                required>
+            </div>
+
+            <div class="col-6">
+              <label for="rollNo" class="form-label"><strong> Roll No </strong> </label>
+              <div class="input-group">
+                <input type="text" class="form-control" formControlName="rollNo" id="rollNo" placeholder="Roll No"
+                  required>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="class" class="form-label"> <strong>Class</strong> </label>
+              <select class="form-select" aria-label="Default select example" required formControlName="class"
+                name="class">
+                <option value="">-- Select Class --</option>
+                <option *ngFor="let item of classOptions" [value]="item">{{item}}</option>
+              </select>
+            </div>
+
+          </div>
+
+          <hr>
+
+          <div class="card mt-2r">
+            <div class="card-header">
+              <div class="header-container d-flex justify-content-between">
+                <span class="product-header">
+                  <strong>Add Subject Marks</strong>
+                </span>
+                <button class="btn btn-warning btn-sm" (click)="addSubject()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" fill="currentColor"
+                    class="bi bi-plus-lg text-white">
+                    <path fill-rule="evenodd"
+                      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <ul class="list-group">
+                    <li class="list-group-item" formArrayName="studentSubMarks"
+                      *ngFor="let marks of getStudentSubMarks.controls; let i=index">
+                      <div class="row" [formGroupName]="i">
+                        <div class="col-4">
+                          <input type="text" class="form-control" id="subjectName" formControlName="subjectName"
+                            placeholder="Subject Name" required
+                            [ngClass]="{ 'isInvalid': marks.get('subjectName')?.errors && marks.get('subjectName')?.hasError('required')}">
+                        </div>
+                        <div class="col-6">
+                          <input type="text" class="form-control" formControlName="subjectMark" id="subjectMark"
+                            placeholder="Subject Mark" required
+                            [ngClass]="{ 'isInvalid': marks.get('subjectMark')?.errors && marks.get('subjectMark')?.hasError('required')}">
+                        </div>
+                        <div class="col-2 text-end">
+                          <button class="btn btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                              class="bi bi-trash-fill" viewBox="0 0 16 16">
+                              <path
+                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="mt-20 w-100 btn btn-primary btn-lg mt-4 mb-4" (click)="createStudentInfo()" type="submit">Create Student Information</button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

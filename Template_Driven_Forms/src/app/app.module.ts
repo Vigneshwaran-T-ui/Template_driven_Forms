@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveModalComponent } from './reactive-modal/reactive-modal.component';
+import { FormArrayComponent } from './form-array/form-array.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReactiveModalComponent } from './reactive-modal/reactive-modal.componen
     TemplateDrivenFormComponentComponent,
     EmployeesListComponent,
     ReactiveFormComponent,
-    ReactiveModalComponent
+    ReactiveModalComponent,
+    FormArrayComponent
   ],
   imports: [
     BrowserModule,
