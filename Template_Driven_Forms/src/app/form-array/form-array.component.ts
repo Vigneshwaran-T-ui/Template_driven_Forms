@@ -16,7 +16,17 @@ export class FormArrayComponent implements OnInit {
     '3st Standard',
     '4st Standard',
     '5st Standard',
-  ]
+  ];
+
+  public subOptions: any[] = [
+    'Tamil',
+    'English',
+    'Hindi',
+    'Maths',
+    'Science',
+    'Social Science',
+    'Physical Education',
+  ];
 
   constructor(
     private formBuilder: FormBuilder
@@ -39,16 +49,24 @@ export class FormArrayComponent implements OnInit {
   get getStudentSubMarks() {
     return this.studentInfo.get("studentSubMarks") as FormArray
   }
-  
+
   addSubject(){
-    let subject = this.getStudentSubMarks;
-    subject.push(this.formBuilder.group({
-      subjectName: ['', [Validators.required]],
-      subjectMark: ['', [Validators.required]]
-    }));
+    if(this.getStudentSubMarks?.valid) {
+      this.getStudentSubMarks.push(this.formBuilder.group({
+        subjectName: ['', [Validators.required]],
+        subjectMark: ['', [Validators.required]]
+      }));
+    }
   }
 
   createStudentInfo() {
-    console.log('data is', this.studentInfo)
+    if(this.studentInfo.valid && this.studentInfo.dirty) {
+      console.log('data is', this.studentInfo)
+    }
+  }
+
+  removeSubject(id: any) {
+
+    this.getStudentSubMarks.removeAt(id);
   }
 }

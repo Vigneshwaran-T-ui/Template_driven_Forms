@@ -44,9 +44,9 @@
                 <span class="product-header">
                   <strong>Add Subject Marks</strong>
                 </span>
-                <button class="btn btn-warning btn-sm" (click)="addSubject()">
+                <button class="btn btn-primary btn-sm" (click)="addSubject()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" fill="currentColor"
-                    class="bi bi-plus-lg text-white">
+                    class="bi bi-plus-lg">
                     <path fill-rule="evenodd"
                       d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
                   </svg>
@@ -61,17 +61,22 @@
                       *ngFor="let marks of getStudentSubMarks.controls; let i=index">
                       <div class="row" [formGroupName]="i">
                         <div class="col-4">
-                          <input type="text" class="form-control" id="subjectName" formControlName="subjectName"
-                            placeholder="Subject Name" required
-                            [ngClass]="{ 'isInvalid': marks.get('subjectName')?.errors && marks.get('subjectName')?.hasError('required')}">
+                          <select class="form-select" aria-label="Default select example" required formControlName="subjectName"
+                                  name="subjectName"
+                                  [ngClass]="{ 'isInvalid': marks.get('subjectName')?.errors && marks.get('subjectName')?.hasError('required')}">
+                            <option value="">-- Select Subject --</option>
+                            <option *ngFor="let item of subOptions" [value]="item">{{item}}</option>
+                          </select>
+                          <div *ngIf="marks.get('subjectName')?.errors && marks.get('subjectName')?.hasError('required')"  class="text-danger fs-6 font-monospace">* Subject Name Required</div>
                         </div>
                         <div class="col-6">
                           <input type="text" class="form-control" formControlName="subjectMark" id="subjectMark"
                             placeholder="Subject Mark" required
                             [ngClass]="{ 'isInvalid': marks.get('subjectMark')?.errors && marks.get('subjectMark')?.hasError('required')}">
+                            <div *ngIf="marks.get('subjectMark')?.errors && marks.get('subjectMark')?.hasError('required')"  class="text-danger fs-6 font-monospace">* Subject Mark Required</div>
                         </div>
                         <div class="col-2 text-end">
-                          <button class="btn btn-danger">
+                          <button class="btn btn-danger" (click)="removeSubject(i)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                               class="bi bi-trash-fill" viewBox="0 0 16 16">
                               <path
@@ -81,6 +86,9 @@
                         </div>
                       </div>
                     </li>
+                    <div class="text-center" *ngIf="studentInfo.value.studentSubMarks.length === 0">
+                        <strong> No Data Found </strong>
+                    </div>
                   </ul>
                 </div>
               </div>
