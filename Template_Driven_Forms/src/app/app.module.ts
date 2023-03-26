@@ -10,6 +10,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveModalComponent } from './reactive-modal/reactive-modal.component';
 import { FormArrayComponent } from './form-array/form-array.component';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormArrayComponent } from './form-array/form-array.component';
     EmployeesListComponent,
     ReactiveFormComponent,
     ReactiveModalComponent,
-    FormArrayComponent
+    FormArrayComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,

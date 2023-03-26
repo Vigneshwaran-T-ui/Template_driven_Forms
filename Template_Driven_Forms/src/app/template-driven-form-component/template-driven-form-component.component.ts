@@ -11,8 +11,6 @@ export class TemplateDrivenFormComponentComponent implements OnInit {
 
   public submitted = false;
 
-  public submitFinished = true;
-
   public firstName: string = '';
   public lastName: string = '';
   public address: string = '';

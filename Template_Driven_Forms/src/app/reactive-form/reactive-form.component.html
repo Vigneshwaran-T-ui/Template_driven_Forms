@@ -13,12 +13,6 @@
           <input type="text" aria-label="Last name" name="lastName" placeholder="Last Name" class="form-control"
             formControlName="lastName"
             [ngClass]="{ 'is-invalid': employeeReactiveForm.get('lastName')?.errors && employeeReactiveForm.get('submitted')?.value === true}">
-          <!-- <div
-            *ngIf="employeeReactiveForm.get('firstName')?.errors && (employeeReactiveForm.get('firstName')?.dirty
-            ||employeeReactiveForm.get('firstName')?.touched) && employeeReactiveForm.submitted"
-            class="invalid-feedback">
-              First Name is not valid
-          </div> -->
         </div>
         <br>
         <div formGroupName="address">

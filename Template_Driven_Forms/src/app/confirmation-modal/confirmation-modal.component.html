@@ -1,0 +1,15 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Confirmation Message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+            (click)="activeModal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>Do You Want to Delete {{this.studentInfo.value.firstName + ' ' +this.studentInfo.value.lastName}}'s
+            {{this.getStudentSubMarks.value[this.removeSubId].subjectName}} Subject Mark?</p>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-primary" (click)="activeModal.dismiss('Cancel click')">No</button>
+        <button type="button" class="btn btn-danger" (click)="yesDelete()">Yes</button>
+    </div>
+</div>
