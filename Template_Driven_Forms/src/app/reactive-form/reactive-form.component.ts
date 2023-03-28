@@ -14,6 +14,8 @@ export class ReactiveFormComponent implements OnInit {
 
   public modalRef!: NgbModalRef
 
+  public isUpdate: any = false;
+
   public jobStatusOptions: any[] = [
     'Student',
     'Work'
@@ -40,6 +42,7 @@ export class ReactiveFormComponent implements OnInit {
 
   formBuilder() {
     this.employeeReactiveForm = new FormGroup({
+      id: new FormControl(0),
       firstName: new FormControl('',[Validators.required, Validators.maxLength(15), Validators.pattern("^[a-zA-Z]+$")],),
       lastName: new FormControl('',[Validators.required, Validators.maxLength(15), Validators.pattern("^[a-zA-Z]+$")]),
       address: new FormGroup({
@@ -111,11 +114,26 @@ export class ReactiveFormComponent implements OnInit {
         this.errorMessage.push('*'+'If you in Work, Work Experience is Required.');
       }
     }
-    if(this.employeeReactiveForm?.valid && this.employeeReactiveForm?.dirty) {
+    if (this.employeeReactiveForm?.valid && this.employeeReactiveForm?.dirty) {
       this.reactiveFormList.push(this.employeeReactiveForm.value);
+      this.employeeReactiveForm
+        ?.get('id')
+        ?.patchValue(this.employeeReactiveForm.value.id+1);
+
       this.openModal();
       this.onReset();
     }
+  }
+
+  onUpdate() {
+    console.log(this.reactiveFormList);
+    const idValue = this.employeeReactiveForm.value.id;
+    if (this.employeeReactiveForm?.valid && this.employeeReactiveForm?.dirty) {
+      this.reactiveFormList[idValue] = this.employeeReactiveForm.value
+      this.openModal();
+      this.onReset();
+    }
+
   }
 
   onBlur() {
@@ -155,7 +173,7 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   onReset() {
-    this.employeeReactiveForm.setValue({
+    this.employeeReactiveForm.patchValue({
       firstName:'',
       lastName: '',
       address: {
@@ -176,6 +194,7 @@ export class ReactiveFormComponent implements OnInit {
       submitted: false
     })
     this.errorMessage = [];
+    this.isUpdate = false;
   }
 
   openModal(){
@@ -184,5 +203,13 @@ export class ReactiveFormComponent implements OnInit {
       backdrop: 'static'
     });
     this.modalRef.componentInstance.employeeReactiveForm = this.reactiveFormList;
+    this.modalRef.componentInstance.editUserEvent.subscribe((data: any) => {
+      this.isUpdate = true;
+      this.employeeReactiveForm.patchValue(this.reactiveFormList[data]);
+      console.log(this.reactiveFormList[data]);
+    })
+    this.modalRef.componentInstance.deleteUserEvent.subscribe((data: any) => {
+      this.reactiveFormList.splice(data,1)
+    })
   }
 }
